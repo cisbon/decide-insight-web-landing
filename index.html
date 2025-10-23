@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Decide Insight helps you track your instincts over time to reveal your true choice. Stop second-guessing your big decisions.">
+    <title>Decide Insight - Trust but Verify</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary-color: #10b981;
+            --text-dark: #1f2937;
+            --text-medium: #4b5563;
+            --text-light: #6b7280;
+            --background: #ffffff;
+            --background-alt: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background);
+            overflow-x: hidden;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .slogan {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        .value-proposition {
+            font-size: 1.25rem;
+            color: var(--text-medium);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
+        }
+
+        .badge-container {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .store-badge {
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .store-badge:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .store-badge img {
+            height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--background);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.125rem;
+            color: var(--text-medium);
+            margin-bottom: 64px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 48px;
+            margin-top: 64px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 40px 24px;
+            background: var(--background-alt);
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
+        }
+
+        .step-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+
+        .step-number {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .step p {
+            color: var(--text-medium);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .final-cta p {
+            font-size: 1.25rem;
+            color: var(--text-medium);
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: #9ca3af;
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .footer-brand {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            font-size: 0.875rem;
+            color: #6b7280;
+            padding-top: 24px;
+            border-top: 1px solid #374151;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Modal for Imprint */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: var(--background);
+            margin: 5% auto;
+            padding: 48px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: var(--text-light);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 20px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--text-dark);
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+            font-size: 2rem;
+        }
+
+        .modal-content h3 {
+            margin-top: 24px;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+            font-size: 1.25rem;
+        }
+
+        .modal-content p {
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .slogan {
+                font-size: 1.25rem;
+            }
+
+            .value-proposition {
+                font-size: 1.125rem;
+            }
+
+            .store-badge img {
+                height: 50px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .final-cta h2 {
+                font-size: 2rem;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .modal-content {
+                padding: 32px 24px;
+                margin: 10% auto;
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 1.875rem;
+            }
+
+            .badge-container {
+                gap: 12px;
+            }
+
+            .store-badge img {
+                height: 45px;
+            }
+
+            .how-it-works,
+            .final-cta {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Stop Second-Guessing Your Big Decisions.</h1>
+                <p class="slogan">Trust but Verify.</p>
+                <p class="value-proposition">
+                    Decide Insight helps you track your instincts over time to reveal your true choice.
+                </p>
+
+                <div class="badge-container">
+                    <a href="#" class="store-badge" aria-label="Download on the App Store">
+                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+                    </a>
+                    <a href="#" class="store-badge" aria-label="Get it on Google Play">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">
+                Make better decisions by understanding what you truly feel over time.
+            </p>
+
+            <div class="steps">
+                <!-- Step 1 -->
+                <div class="step">
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                        </svg>
+                    </div>
+                    <p class="step-number">Step 1</p>
+                    <h3>Define Your Question</h3>
+                    <p>Set your important Yes/No question and choose a timeframe that works for you. Whether it's a career move, relationship decision, or major purchase, we'll help you track it.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step">
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+                        </svg>
+                    </div>
+                    <p class="step-number">Step 2</p>
+                    <h3>Log Your Gut Feeling</h3>
+                    <p>Receive a daily notification asking for your instinctive answer. It takes just seconds to respond. Your honest, in-the-moment feelings are what matter most.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step">
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                    </div>
+                    <p class="step-number">Step 3</p>
+                    <h3>Get Clear Analysis</h3>
+                    <p>At the end of your timeframe, receive a comprehensive analysis of your decision trend. See patterns in your responses and gain clarity on what your instincts are really telling you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Trust Your Instincts?</h2>
+            <p>
+                Join thousands making better decisions by tracking what they truly feel. Download Decide Insight today and start your journey to clarity.
+            </p>
+
+            <div class="badge-container">
+                <a href="#" class="store-badge" aria-label="Download on the App Store">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+                </a>
+                <a href="#" class="store-badge" aria-label="Get it on Google Play">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-brand">Decide Insight</div>
+            <div class="footer-links">
+                <a href="#" id="imprintLink">Legal Notice / Imprint</a>
+                <a href="#" id="privacyLink">Privacy Policy</a>
+                <a href="#" id="termsLink">Terms of Service</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Decide Insight. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Imprint Modal -->
+    <div id="imprintModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Legal Notice / Imprint</h2>
+
+            <h3>Information pursuant to § 5 TMG</h3>
+            <p>
+                <strong>Decide Insight</strong><br>
+                [Company Name]<br>
+                [Street Address]<br>
+                [Postal Code, City]<br>
+                [Country]
+            </p>
+
+            <h3>Contact</h3>
+            <p>
+                Email: legal@decide-insight.com<br>
+                Website: www.decide-insight.com
+            </p>
+
+            <h3>Represented by</h3>
+            <p>[Name of Managing Director or Authorized Representative]</p>
+
+            <h3>Responsible for content according to § 55 Abs. 2 RStV</h3>
+            <p>
+                [Name]<br>
+                [Address]
+            </p>
+
+            <h3>Disclaimer</h3>
+            <p>
+                <strong>Liability for content:</strong> The contents of our pages have been created with the utmost care. However, we cannot guarantee the contents' accuracy, completeness, or topicality. According to statutory provisions, we are responsible for our own content on these pages. We are not obligated to monitor transmitted or stored third-party information or investigate circumstances indicating illegal activity.
+            </p>
+
+            <p>
+                <strong>Liability for links:</strong> Our website contains links to external third-party websites over whose content we have no influence. Therefore, we cannot accept any liability for this third-party content. The respective provider or operator of the pages is always responsible for the content of the linked pages.
+            </p>
+
+            <p>
+                <strong>Copyright:</strong> The content and works on these pages created by the site operators are subject to copyright law. Duplication, processing, distribution, or any form of commercialization beyond the scope of copyright law requires the prior written consent of its respective author or creator.
+            </p>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Privacy Policy</h2>
+
+            <h3>Data Protection</h3>
+            <p>
+                We take the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with statutory data protection regulations and this privacy policy.
+            </p>
+
+            <h3>Data Collection</h3>
+            <p>
+                When you use our app, we collect information that you provide directly to us, including:
+            </p>
+            <p>
+                • Your decision questions and daily responses<br>
+                • Usage data and analytics<br>
+                • Device information for app functionality
+            </p>
+
+            <h3>Use of Your Data</h3>
+            <p>
+                We use the collected data to:
+            </p>
+            <p>
+                • Provide and improve our services<br>
+                • Generate your decision analysis<br>
+                • Send you notifications as configured<br>
+                • Ensure app security and prevent fraud
+            </p>
+
+            <h3>Data Security</h3>
+            <p>
+                We use appropriate technical and organizational security measures to protect your data against accidental or unlawful destruction, loss, alteration, unauthorized disclosure, or access.
+            </p>
+
+            <h3>Your Rights</h3>
+            <p>
+                You have the right to request information about your stored data, correction, deletion, or restriction of processing. You also have the right to data portability and to object to processing.
+            </p>
+
+            <h3>Contact</h3>
+            <p>
+                For questions regarding data protection, please contact: privacy@decide-insight.com
+            </p>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Terms of Service</h2>
+
+            <h3>1. Acceptance of Terms</h3>
+            <p>
+                By accessing and using Decide Insight, you accept and agree to be bound by the terms and provision of this agreement.
+            </p>
+
+            <h3>2. Use License</h3>
+            <p>
+                Permission is granted to use Decide Insight for personal, non-commercial purposes. This license shall automatically terminate if you violate any of these restrictions.
+            </p>
+
+            <h3>3. Service Description</h3>
+            <p>
+                Decide Insight is a decision-tracking tool that helps users monitor their instinctive responses to important questions over time. The app provides analysis based on user input but does not constitute professional advice.
+            </p>
+
+            <h3>4. User Responsibilities</h3>
+            <p>
+                You are responsible for:
+            </p>
+            <p>
+                • Maintaining the confidentiality of your account<br>
+                • All activities that occur under your account<br>
+                • Ensuring your use complies with applicable laws<br>
+                • The accuracy of information you provide
+            </p>
+
+            <h3>5. Disclaimer</h3>
+            <p>
+                Decide Insight is provided "as is" without warranties of any kind. The service is not a substitute for professional advice. Users should consult qualified professionals for important life decisions.
+            </p>
+
+            <h3>6. Limitation of Liability</h3>
+            <p>
+                In no event shall Decide Insight be liable for any damages arising out of the use or inability to use the service.
+            </p>
+
+            <h3>7. Modifications</h3>
+            <p>
+                We reserve the right to revise these terms at any time. By using Decide Insight, you agree to be bound by the current version of these Terms of Service.
+            </p>
+
+            <h3>Contact</h3>
+            <p>
+                For questions about these Terms, contact: legal@decide-insight.com
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modals = {
+            imprint: document.getElementById('imprintModal'),
+            privacy: document.getElementById('privacyModal'),
+            terms: document.getElementById('termsModal')
+        };
+
+        const links = {
+            imprint: document.getElementById('imprintLink'),
+            privacy: document.getElementById('privacyLink'),
+            terms: document.getElementById('termsLink')
+        };
+
+        // Open modal functions
+        links.imprint.onclick = function(e) {
+            e.preventDefault();
+            modals.imprint.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        };
+
+        links.privacy.onclick = function(e) {
+            e.preventDefault();
+            modals.privacy.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        };
+
+        links.terms.onclick = function(e) {
+            e.preventDefault();
+            modals.terms.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        };
+
+        // Close modal when clicking on X
+        const closeButtons = document.getElementsByClassName('close');
+        Array.from(closeButtons).forEach(button => {
+            button.onclick = function() {
+                this.parentElement.parentElement.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            };
+        });
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        };
+
+        // Smooth scroll behavior for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe step elements for animation
+        document.querySelectorAll('.step').forEach(step => {
+            step.style.opacity = '0';
+            step.style.transform = 'translateY(30px)';
+            step.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(step);
+        });
+    </script>
+</body>
+</html>
